@@ -91,12 +91,14 @@ void mks_draw_ready(void) {
 
 static void disp_imgbtn(void) {
 
-    if (mks_get_wifi_status() == false){ 
-        ready_src.ready_imgbtn_wifi_status = lv_imgbtn_creat_n_mks(mks_global.mks_src ,ready_src.ready_imgbtn_wifi_status, &png_wifi_disconnect, &png_wifi_disconnect, 0, 0, event_handler);
-    }
-    else{
-        ready_src.ready_imgbtn_wifi_status = lv_imgbtn_creat_n_mks(mks_global.mks_src ,ready_src.ready_imgbtn_wifi_status, &png_wifi_connect, &png_wifi_connect, 0, 0, event_handler);
-    }
+    #if defined(ENABLE_WIFI)
+        if (mks_get_wifi_status() == false){ 
+            ready_src.ready_imgbtn_wifi_status = lv_imgbtn_creat_n_mks(mks_global.mks_src ,ready_src.ready_imgbtn_wifi_status, &png_wifi_disconnect, &png_wifi_disconnect, 0, 0, event_handler);
+        }
+        else{
+            ready_src.ready_imgbtn_wifi_status = lv_imgbtn_creat_n_mks(mks_global.mks_src ,ready_src.ready_imgbtn_wifi_status, &png_wifi_connect, &png_wifi_connect, 0, 0, event_handler);
+        }
+    #endif
 
     ready_src.ready_imgbtn_Control = lv_imgbtn_creat_mks(mks_global.mks_src_1, ready_src.ready_imgbtn_Control, &png_ctrl_pre, &Control, LV_ALIGN_IN_TOP_LEFT,102, 10, event_handler);
     ready_src.ready_imgbtn_Sculpture = lv_imgbtn_creat_mks(mks_global.mks_src_1, ready_src.ready_imgbtn_Sculpture, &png_file_pre, &Sculpture, LV_ALIGN_IN_TOP_LEFT, 202, 10, event_handler);
@@ -137,7 +139,7 @@ static void disp_label(void) {
         }
     #else 
         // ready_src.ready_label_wifi_status = mks_lv_static_label(ready_src.ready_btn_wifi, ready_src.ready_label_wifi_status, 40, 0, "Disconnect", 110);
-        ready_src.ready_label_wifi_status = label_for_btn_name(ready_src.ready_btn_wifi, ready_src.ready_label_wifi_status, 0, 0, "WIFI:Disconnect");
+       // ready_src.ready_label_wifi_status = label_for_btn_name(ready_src.ready_btn_wifi, ready_src.ready_label_wifi_status, 0, 0, "WIFI:Disconnect");
     #endif
 }
 

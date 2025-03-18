@@ -23,6 +23,7 @@
 */
 
 #include "Grbl.h"
+#include "mks/MKS_draw_print.h"
 
 // Allow iteration over CoordIndex values
 CoordIndex& operator++(CoordIndex& i) {
@@ -629,6 +630,7 @@ Error gc_execute_line(char* line, uint8_t client) {
                     case 'P':
                         axis_word_bit     = GCodeWord::P;
                         gc_block.values.p = value;
+                        strcpy(gc_state.message, "Remove Probe");
                         break;
                     case 'Q':
                         axis_word_bit     = GCodeWord::Q;
@@ -648,8 +650,13 @@ Error gc_execute_line(char* line, uint8_t client) {
                         if (value > MaxToolNumber) {
                             FAIL(Error::GcodeMaxValueExceeded);
                         }
-                        grbl_msg_sendf(CLIENT_SERIAL, MsgLevel::Info, "Tool No: %d", int_value);
-                        gc_state.tool = int_value;
+                        if (int_value==0) {
+                            snprintf(gc_state.message, sizeof(gc_state.message), "Remove Probe");
+                        } else {
+                        //grbl_msg_sendf(CLIENT_SERIAL, MsgLevel::Info, "Tool No: %d", int_value);
+                            snprintf(gc_state.message, sizeof(gc_state.message), "Tool No: %d", int_value);
+                            gc_state.tool = int_value;
+                        }
                         break;
                     case 'X':
                         if (n_axis > X_AXIS) {
@@ -1559,6 +1566,7 @@ Error gc_execute_line(char* line, uint8_t client) {
         case ProgramFlow::Paused:
             protocol_buffer_synchronize();  // Sync and finish all remaining buffered motions before moving on.
             if (sys.state != State::CheckMode) {
+                draw_global_popup(gc_state.message);
                 sys_rt_exec_state.bit.feedHold = true;  // Use feed hold for program pause.
                 protocol_execute_realtime();            // Execute suspend.
             }

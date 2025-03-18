@@ -99,7 +99,7 @@ const int MAX_N_AXIS = 6;
 // #define ENABLE_BLUETOOTH  // enable bluetooth
 
 #define ENABLE_SD_CARD                  /* enable use of SD Card to run jobs        */ 
-#define ENABLE_WIFI                     /* enable wifi                              */
+// #define ENABLE_WIFI                     /* enable wifi                              */
 #define ENABLE_LCD                      /* enable TS35 LCD for LVGL @ 6.12          */
 
 #if defined(ENABLE_WIFI) || defined(ENABLE_BLUETOOTH)
@@ -213,7 +213,7 @@ static const uint8_t NHomingLocateCycle = 1;  // Integer (1-128)
 // cycle is still invoked by the $H command. This is disabled by default. It's here only to address
 // users that need to switch between a two-axis and three-axis machine. This is actually very rare.
 // If you have a two-axis machine, DON'T USE THIS. Instead, just alter the homing cycle for two-axes.
-#define HOMING_SINGLE_AXIS_COMMANDS  // Default disabled. Uncomment to enable.
+// #define HOMING_SINGLE_AXIS_COMMANDS  // Default disabled. Uncomment to enable.
 
 // Number of blocks Grbl executes upon startup. These blocks are stored in non-volatile storage.
 // and addresses are defined in settings.h. With the current settings, up to 2 startup blocks may

@@ -106,7 +106,8 @@ void mks_grbl_parg_init(void) {
 
     if(language_select->get() == 0) mks_grbl.language = SimpleChinese;
     else if(language_select->get() == 1) mks_grbl.language = English;
-    else if(language_select->get() == 1) mks_grbl.language = Deutsch;
+    else if(language_select->get() == 2) mks_grbl.language = Deutsch;
+    else mks_grbl.language = English;
     
     mks_grbl.light_status = GRBL_Light_Off;
     mks_grbl.move_dis = M_10_MM;

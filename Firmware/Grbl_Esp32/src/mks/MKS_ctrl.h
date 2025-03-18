@@ -88,6 +88,8 @@ void spindle_check(void);
 
 void mks_wifi_scanf(void);
 void mks_wifi_connect(void);
+#if defined(ENABLE_WIFI)
 bool mks_get_wifi_status(void);
+#endif
 bool mks_wifi_check_is_out(bool flag);
 #endif

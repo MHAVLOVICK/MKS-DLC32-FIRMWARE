@@ -83,7 +83,7 @@
 #endif
 
 // Laser pin set
-#define SPINDLE_TYPE                SpindleType::PWM 
+#define SPINDLE_TYPE                SpindleType::RELAY 
 #ifdef USE_BOARD_V2_0
 #define SPINDLE_OUTPUT_PIN          GPIO_NUM_32
 #else 
@@ -130,7 +130,7 @@
 // #define DEFAULT_STEP_PULSE_MICROSECONDS I2S_OUT_USEC_PER_PULSE
 #define DEFAULT_STEP_PULSE_MICROSECONDS     10
 
-#define DEFAULT_STEPPER_IDLE_LOCK_TIME      25
+#define DEFAULT_STEPPER_IDLE_LOCK_TIME      255
 
 #define DEFAULT_STEPPING_INVERT_MASK    	0 // uint8_t
 #define DEFAULT_DIRECTION_INVERT_MASK   	1 // uint8_t
@@ -145,41 +145,41 @@
 #define DEFAULT_REPORT_INCHES       		0           // false
 
 #define DEFAULT_SOFT_LIMIT_ENABLE 			0           // false
-#define DEFAULT_HARD_LIMIT_ENABLE 			0           // false
+#define DEFAULT_HARD_LIMIT_ENABLE 			1           // false
 
 #define DEFAULT_HOMING_CYCLE_0              (bit(X_AXIS) | bit(Y_AXIS))
 #define DEFAULT_HOMING_CYCLE_1              0           // (bit(Z_AXIS))        /* If you want star Z axis, select (bit(Z_AXIS)) */
 #define DEFAULT_HOMING_ENABLE           	0           // false
 #define DEFAULT_HOMING_DIR_MASK         	1           // move positive dir Z,negative X,Y
-#define DEFAULT_HOMING_FEED_RATE        	300.0       // mm/min
-#define DEFAULT_HOMING_SEEK_RATE        	1000.0      // mm/min
+#define DEFAULT_HOMING_FEED_RATE        	100.0       // mm/min
+#define DEFAULT_HOMING_SEEK_RATE        	500.0      // mm/min
 #define DEFAULT_HOMING_DEBOUNCE_DELAY   	250         // msec (0-65k)
 #define DEFAULT_HOMING_PULLOFF          	1.0         // mm
 
 #ifdef USE_SPINDLE_RELAY
     #define DEFAULT_SPINDLE_RPM_MAX 1.0 // must be 1 so PWM duty is alway 100% to prevent relay damage
 #else
-    #define DEFAULT_SPINDLE_RPM_MAX 10000.0 // can be change to your spindle max
+    #define DEFAULT_SPINDLE_RPM_MAX 12000.0 // can be change to your spindle max
 #endif
 #define DEFAULT_SPINDLE_RPM_MIN 0.0 // rpm
 
 #define DEFAULT_LASER_MODE 0 // false
 
-#define DEFAULT_X_STEPS_PER_MM 80.0
-#define DEFAULT_Y_STEPS_PER_MM 80.0
-#define DEFAULT_Z_STEPS_PER_MM 80.0
+#define DEFAULT_X_STEPS_PER_MM 800.0
+#define DEFAULT_Y_STEPS_PER_MM 800.0
+#define DEFAULT_Z_STEPS_PER_MM 800.0
 
-#define DEFAULT_X_MAX_RATE 6000.0 // mm/s
-#define DEFAULT_Y_MAX_RATE 6000.0 // mm/s
-#define DEFAULT_Z_MAX_RATE 6000.0 // mm/s
+#define DEFAULT_X_MAX_RATE 600.0 // mm/s
+#define DEFAULT_Y_MAX_RATE 600.0 // mm/s
+#define DEFAULT_Z_MAX_RATE 600.0 // mm/s
 
-#define DEFAULT_X_ACCELERATION 500.0 // mm/sec^2
-#define DEFAULT_Y_ACCELERATION 500.0 // mm/sec^2
-#define DEFAULT_Z_ACCELERATION 500.0 // mm/sec^2
+#define DEFAULT_X_ACCELERATION 50.0 // mm/sec^2
+#define DEFAULT_Y_ACCELERATION 50.0 // mm/sec^2
+#define DEFAULT_Z_ACCELERATION 50.0 // mm/sec^2
 
-#define DEFAULT_X_MAX_TRAVEL 450.0 // mm NOTE: Must be a positive value.
-#define DEFAULT_Y_MAX_TRAVEL 450.0 // mm NOTE: Must be a positive value.
-#define DEFAULT_Z_MAX_TRAVEL 50.0 // mm NOTE: Must be a positive value.
+#define DEFAULT_X_MAX_TRAVEL 320.0 // mm NOTE: Must be a positive value.
+#define DEFAULT_Y_MAX_TRAVEL 320.0 // mm NOTE: Must be a positive value.
+#define DEFAULT_Z_MAX_TRAVEL 80.0 // mm NOTE: Must be a positive value.
 
 #define DEFAULT_SPINDLE_FREQ        1920// 8000.0   // 1KHz
 #define DEFAULT_LASER_FULL_POWER    1000
@@ -188,5 +188,5 @@
 
 
 #define DEFAULT_BEEP_STATUS                 1
-#define DEFAULT_LANGUAGE_STATUS             1       // default simple engliash
+#define DEFAULT_LANGUAGE_STATUS             1      // default simple english
 
