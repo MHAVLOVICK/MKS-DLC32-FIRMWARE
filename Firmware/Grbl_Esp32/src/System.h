@@ -35,7 +35,7 @@ enum class State : uint8_t {
     Hold,        // Active feed hold
     Jog,         // Jogging mode.
     SafetyDoor,  // Safety door is ajar. Feed holds and de-energizes system.
-    Sleep,       // Sleep state.
+    Sleep,       // Sleep state. 
 };
 
 // Step segment generator state flags.

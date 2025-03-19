@@ -26,6 +26,7 @@
 #include "mks/MKS_draw_ready.h"
 #include "mks/MKS_ctrl.h"
 #include "mks/MKS_SDCard.h"
+#include "mks/MKS_draw_language.h"
 
 void grbl_init() {
 
@@ -123,6 +124,7 @@ void _mc_task_init(void) {
     tft_TS35_init();
     test_cfg_find_init();
     disp_task_init();
+    set_language(1);
 }
 
 
@@ -187,10 +189,11 @@ static void reset_variables() {
         }else {
             mks_updata.updata_flag = UD_NONE;
         }
-
+#if defined(ENABLE_WIFI)
         if(mks_updata.updata_flag == UD_NO_FILE) {
             WebUI::wifi_config.mks_setup();
         }
+#endif
         
 #if defined(USE_BL_TOUCH)
         BLTOUCH_push_up();
